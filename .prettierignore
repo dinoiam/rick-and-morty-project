@@ -1,0 +1,8 @@
+/src/images
+/src/@types
+/src/queries
+/src/mocks
+/dist
+/node_modules
+/graphql-schema.json
+/package-lock.json
