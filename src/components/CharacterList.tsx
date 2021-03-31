@@ -1,9 +1,10 @@
-import React, { useEffect, useState, useRef, useCallback } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import characterQuery from '@root/queries/characterQuery';
 import { AllCharacters, AllCharacters_characters_results } from '@root/queries/types/AllCharacters';
 import { useQuery } from '@apollo/client';
 import styled from 'styled-components';
 import CharacterCard from '@components/CharacterCard';
+import InfiniteScroll from '@components/InfiniteScroll';
 import { device } from '@root/styles/devicesWidth';
 import Loading from '@components/Loading';
 
@@ -14,6 +15,7 @@ const CharacterListComponent = styled.div`
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+  flex-direction: column;
 `;
 const CharacterListWrapper = styled.div`
   @media ${device.laptop} {
@@ -25,26 +27,11 @@ const CharacterListWrapper = styled.div`
 
 export default function CharacterList() {
   const [page, setPage] = useState<number>(1);
-  const { loading, data } = useQuery<AllCharacters>(characterQuery, {
+  const { loading, error, data } = useQuery<AllCharacters>(characterQuery, {
     variables: { page }
   });
   const [allCharacters, setAllCharacters] = useState<(AllCharacters_characters_results | null)[]>(
     []
-  );
-
-  const observer = useRef<IntersectionObserver>();
-  const bottomRef = useCallback(
-    (node: HTMLDivElement) => {
-      if (loading) return;
-      if (observer.current) observer.current.disconnect();
-      observer.current = new IntersectionObserver((entries) => {
-        if (entries[0].isIntersecting) {
-          setPage((page) => page + 1);
-        }
-      });
-      if (node) observer.current.observe(node);
-    },
-    [loading]
   );
 
   useEffect(() => {
@@ -54,21 +41,27 @@ export default function CharacterList() {
     }
   }, [data]);
 
+  const charactersCards = useMemo(() => {
+    return allCharacters.map((character) => {
+      if (character) {
+        return <CharacterCard key={character.id} character={character}></CharacterCard>;
+      }
+    });
+  }, [allCharacters]);
+
   return (
     <CharacterListComponent>
-      <CharacterListWrapper>
-        {allCharacters.map((character, index) => {
-          let elemets = [];
-          if (allCharacters.length === index + 1 && data?.characters?.info?.next) {
-            elemets.push(<div key={index + 1} ref={bottomRef}></div>);
-          } else if (character) {
-            elemets.push(<CharacterCard key={index} character={character}></CharacterCard>);
-          }
-          return elemets;
-        })}
-      </CharacterListWrapper>
-      {data?.characters?.info?.next === null && <div>NOTHING ELSE TO SHOW</div>}
-      {true && <Loading></Loading>}
+      {allCharacters.length ? (
+        <InfiniteScroll
+          callback={() => setPage(page + 1)}
+          loading={loading}
+          loadMore={data?.characters?.info?.next !== null && !error ? true : false}
+        >
+          <CharacterListWrapper>{charactersCards}</CharacterListWrapper>
+        </InfiniteScroll>
+      ) : (
+        <Loading></Loading>
+      )}
     </CharacterListComponent>
   );
 }
