@@ -13,7 +13,7 @@ export default function InfiniteScroll({
   loadMore,
   loading,
   callback
-}: InfiniteScrollProps) {
+}: InfiniteScrollProps): JSX.Element {
   const observer = useRef<IntersectionObserver>();
 
   const bottomRef = useCallback(
@@ -35,7 +35,7 @@ export default function InfiniteScroll({
       {children}
       {!loadMore && <div>NOTHING ELSE TO SHOW</div>}
       {loadMore && <div ref={bottomRef}></div>}
-      {<Loading></Loading>}
+      {loadMore && <Loading></Loading>}
     </>
   );
 }

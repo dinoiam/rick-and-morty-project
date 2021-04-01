@@ -1,17 +1,18 @@
 import { AllCharacters_characters_results } from '@root/queries/types/AllCharacters';
-import React from 'react';
+import React, { useMemo } from 'react';
 import styled from 'styled-components';
-import PeopleSVG from '../../src/images/group.svg';
 import { device } from '@root/styles/devicesWidth';
 import { colors } from '@root/styles/colors';
+import CharacterCardDetails from '@components/CharacterCardDetails';
+import CharacterCardStatus from '@components/CharacterCardStatus';
 
 export type CharacterCardProps = {
   character: AllCharacters_characters_results;
 };
 
-const CharacterCardWrapper = styled.article`
+const CharacterCardComponent = styled.article`
   background: ${colors.background};
-  border-radius: 0.5rem;
+  border-radius: 10px;
   overflow: hidden;
   margin-bottom: 20px;
   color: ${colors.primary};
@@ -50,27 +51,11 @@ const CharacterCardContentTitle = styled.div`
   font-weight: 700;
   font-size: 30px;
 `;
-const CharacterCardContentStatus = styled.div`
-  color: ${colors.primary_variant};
-  font-size: 20px;
-`;
-const CharacterCardContentDetails = styled.div`
-  color: ${colors.primary_variant};
-  font-size: 20px;
-  margin-top: 20px;
-`;
 
 const SubText = styled.span`
   color: ${colors.primary};
   margin-bottom: 5px;
   display: block;
-`;
-
-const People = styled(PeopleSVG)`
-  width: 24px;
-  height: 24px;
-  fill: white;
-  vertical-align: bottom;
 `;
 
 const CharacterEpisodesWrapper = styled.div`
@@ -81,6 +66,7 @@ const CharacterEpisodesWrapper = styled.div`
     width: 100%;
   }
 `;
+
 const Episodes = styled.ul`
   max-height: 100px;
   overflow: hidden;
@@ -90,39 +76,42 @@ const Episodes = styled.ul`
 `;
 
 export default React.memo(function CharacterCard({ character }: CharacterCardProps) {
+  const episodes = useMemo(() => {
+    return character.episode?.map((episode) => {
+      if (episode) {
+        return <li key={episode.id}>{episode.name}</li>;
+      }
+    });
+  }, [character.episode]);
   return (
-    <CharacterCardWrapper>
+    <CharacterCardComponent>
       <CharacterCardImageWrapper>
         <CharacterCardImage src={character.image ?? ''} />
       </CharacterCardImageWrapper>
       <CharacterCardContentWrapper>
         <CharacterCardContentTitle>{character.name}</CharacterCardContentTitle>
-        <CharacterCardContentStatus>{`${character.status} - ${character.species}`}</CharacterCardContentStatus>
-        <CharacterCardContentDetails>
-          <SubText>Origin:</SubText>
-          <div>
-            <span>{character.origin?.name}</span> -{' '}
-            <span>{character.origin?.dimension ?? '??'}</span> - <People></People>
-            <span> {character.origin?.residents?.length ?? '??'}</span>
-          </div>
-        </CharacterCardContentDetails>
-        <CharacterCardContentDetails>
-          <SubText>Last known location:</SubText>
-          <div>
-            <span>{character.location?.name}</span> -{' '}
-            <span>{character.location?.dimension ?? '??'}</span> - <People></People>
-            <span> {character.location?.residents?.length ?? '??'}</span>
-          </div>
-        </CharacterCardContentDetails>
+        <CharacterCardStatus
+          species={character.species}
+          status={character.status}
+          gender={character.gender}
+        />
+        <CharacterCardDetails
+          subText={<SubText>Origin:</SubText>}
+          name={character.origin?.name ?? null}
+          dimension={character.origin?.dimension ?? null}
+          numberOfResidents={character.origin?.residents?.length ?? null}
+        ></CharacterCardDetails>
+        <CharacterCardDetails
+          subText={<SubText>Last known location:</SubText>}
+          name={character.location?.name ?? null}
+          dimension={character.location?.dimension ?? null}
+          numberOfResidents={character.location?.residents?.length ?? null}
+        ></CharacterCardDetails>
       </CharacterCardContentWrapper>
       <CharacterEpisodesWrapper>
         <SubText>Episodes:</SubText>
-        <Episodes>
-          {character.episode?.map((episode) => {
-            return <li key={episode?.id}>{episode?.name}</li>;
-          })}
-        </Episodes>
+        <Episodes>{episodes}</Episodes>
       </CharacterEpisodesWrapper>
-    </CharacterCardWrapper>
+    </CharacterCardComponent>
   );
 });

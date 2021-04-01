@@ -27,7 +27,7 @@ const dots = keyframes`
   }
 `;
 
-const LoadingWrapper = styled.div`
+const LoadingComponent = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -45,11 +45,11 @@ const LoadingText = styled.p`
     animation: ${dots} 1s steps(5, end) infinite;
   }
 `;
-export default function Loading() {
+export default function Loading(): JSX.Element {
   return (
-    <LoadingWrapper>
+    <LoadingComponent>
       <LoadingImage alt="loading" src={Morty} />
       <LoadingText>Loading</LoadingText>
-    </LoadingWrapper>
+    </LoadingComponent>
   );
 }

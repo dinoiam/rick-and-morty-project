@@ -9,7 +9,7 @@ import { device } from '@root/styles/devicesWidth';
 import Loading from '@components/Loading';
 
 const CharacterListComponent = styled.div`
-  padding: 15px;
+  padding: 50px 15px;
   min-height: inherit;
   display: flex;
   justify-content: center;
@@ -25,7 +25,7 @@ const CharacterListWrapper = styled.div`
   }
 `;
 
-export default function CharacterList() {
+export default function CharacterList(): JSX.Element {
   const [page, setPage] = useState<number>(1);
   const { loading, error, data } = useQuery<AllCharacters>(characterQuery, {
     variables: { page }
