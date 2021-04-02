@@ -47,7 +47,7 @@ const LoadingText = styled.p`
 `;
 export default function Loading(): JSX.Element {
   return (
-    <LoadingComponent>
+    <LoadingComponent data-testid="loading-component">
       <LoadingImage alt="loading" src={Morty} />
       <LoadingText>Loading</LoadingText>
     </LoadingComponent>

@@ -33,7 +33,6 @@ export default function CharacterList(): JSX.Element {
   const [allCharacters, setAllCharacters] = useState<(AllCharacters_characters_results | null)[]>(
     []
   );
-
   useEffect(() => {
     if (data?.characters?.results) {
       const results = data.characters.results;
@@ -50,7 +49,7 @@ export default function CharacterList(): JSX.Element {
   }, [allCharacters]);
 
   return (
-    <CharacterListComponent>
+    <CharacterListComponent data-testid="character-list-component">
       {allCharacters.length ? (
         <InfiniteScroll
           callback={() => setPage(page + 1)}

@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header it renders properly 1`] = `
+<div>
+  <section
+    class="sc-bdfBwQ bfqCZ"
+    data-testid="header-component"
+  >
+    <span
+      class="sc-gsTCUz kxtmyK"
+    >
+      THE RICK AND MORTY
+    </span>
+    <div
+      class="sc-dlfnbm jegWKw"
+    />
+  </section>
+</div>
+`;

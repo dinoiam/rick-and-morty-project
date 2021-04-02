@@ -29,7 +29,7 @@ export default function CharacterCardDetails({
   numberOfResidents
 }: CharacterCardDetailsProps): JSX.Element {
   return (
-    <CharacterCardDetailsComponent>
+    <CharacterCardDetailsComponent data-testid="character-card-details-component">
       {subText}
       {name && <span>{name}</span>}
       {dimension && <span> - {dimension}</span>}

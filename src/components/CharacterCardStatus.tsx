@@ -15,7 +15,7 @@ const StatusIcon = styled.div<{ statusColor: string }>`
   height: 0.5rem;
   width: 0.5rem;
   margin-right: 0.375rem;
-  background: rgb(85, 204, 68);
+  background: ${({ statusColor }) => statusColor};
   border-radius: 50%;
 `;
 
@@ -31,8 +31,8 @@ export default function CharacterCardStatus({
   gender
 }: CharacterCardStatusProps): JSX.Element {
   return (
-    <CharacterCardStatusComponent>
-      {status && <StatusIcon statusColor={getColorFromStatus(status)} />}
+    <CharacterCardStatusComponent data-testid="character-card-status-component">
+      {status && <StatusIcon data-testid="status-icon" statusColor={getColorFromStatus(status)} />}
       {`${status} - ${species} - ${gender}`}
     </CharacterCardStatusComponent>
   );

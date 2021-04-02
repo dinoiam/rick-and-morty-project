@@ -33,8 +33,8 @@ export default function InfiniteScroll({
   return (
     <>
       {children}
-      {!loadMore && <div>NOTHING ELSE TO SHOW</div>}
-      {loadMore && <div ref={bottomRef}></div>}
+      {!loadMore && <div data-testid="no-more-results">NOTHING ELSE TO SHOW</div>}
+      {loadMore && <div data-testid="bottom-div" ref={bottomRef}></div>}
       {loadMore && <Loading></Loading>}
     </>
   );

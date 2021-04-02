@@ -33,7 +33,7 @@ const Hero = styled(HeroSvg)`
 
 export default function Header(): JSX.Element {
   return (
-    <HeaderComponent>
+    <HeaderComponent data-testid="header-component">
       <HeaderTitle>THE RICK AND MORTY</HeaderTitle>
       <Hero></Hero>
     </HeaderComponent>

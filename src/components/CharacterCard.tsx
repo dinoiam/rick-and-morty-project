@@ -46,7 +46,7 @@ const CharacterCardContentWrapper = styled.div`
     flex: 1;
   }
 `;
-const CharacterCardContentTitle = styled.div`
+const CharacterCardContentName = styled.div`
   color: ${colors.primary_variant};
   font-weight: 700;
   font-size: 30px;
@@ -84,31 +84,33 @@ export default React.memo(function CharacterCard({ character }: CharacterCardPro
     });
   }, [character.episode]);
   return (
-    <CharacterCardComponent>
+    <CharacterCardComponent data-testid="character-card-component">
       <CharacterCardImageWrapper>
-        <CharacterCardImage src={character.image ?? ''} />
+        <CharacterCardImage data-testid="character-card-image" src={character.image ?? ''} />
       </CharacterCardImageWrapper>
       <CharacterCardContentWrapper>
-        <CharacterCardContentTitle>{character.name}</CharacterCardContentTitle>
+        <CharacterCardContentName data-testid="character-card-name">
+          {character.name}
+        </CharacterCardContentName>
         <CharacterCardStatus
           species={character.species}
           status={character.status}
           gender={character.gender}
         />
         <CharacterCardDetails
-          subText={<SubText>Origin:</SubText>}
+          subText={<SubText data-testid="character-origin">Origin:</SubText>}
           name={character.origin?.name ?? null}
           dimension={character.origin?.dimension ?? null}
           numberOfResidents={character.origin?.residents?.length ?? null}
         ></CharacterCardDetails>
         <CharacterCardDetails
-          subText={<SubText>Last known location:</SubText>}
+          subText={<SubText data-testid="character-location">Last known location:</SubText>}
           name={character.location?.name ?? null}
           dimension={character.location?.dimension ?? null}
           numberOfResidents={character.location?.residents?.length ?? null}
         ></CharacterCardDetails>
       </CharacterCardContentWrapper>
-      <CharacterEpisodesWrapper>
+      <CharacterEpisodesWrapper data-testid="character-episodes">
         <SubText>Episodes:</SubText>
         <Episodes>{episodes}</Episodes>
       </CharacterEpisodesWrapper>
