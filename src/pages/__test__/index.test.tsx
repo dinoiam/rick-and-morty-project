@@ -1,5 +1,5 @@
 import React from 'react';
-import Index from '@root/pages';
+import Index from '@src/pages';
 import { render } from '@testing-library/react';
 
 jest.mock(

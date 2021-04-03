@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { colors } from '@root/styles/colors';
+import { colors } from '@src/styles/colors';
 import PeopleSVG from '../../src/images/group.svg';
 
 const CharacterCardDetailsComponent = styled.div`

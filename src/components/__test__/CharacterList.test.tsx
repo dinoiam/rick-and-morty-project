@@ -1,10 +1,10 @@
 import React from 'react';
 import CharacterList from '@components/CharacterList';
 import { render, act } from '@testing-library/react';
-import characterQuery from '@root/queries/characterQuery';
-import '../../../__mocks__/matchMedia.mock';
+import characterQuery from '@src/queries/characterQuery';
+import '@src/__mocks__/matchMedia.mock';
 import { MockedProvider } from '@apollo/client/testing';
-import '../../../__mocks__/intersectionObserverMock';
+import '@src/__mocks__/intersectionObserverMock';
 
 const firstQueryResult = {
   characters: {

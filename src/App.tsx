@@ -1,7 +1,7 @@
 import React from 'react';
 import { ApolloProvider } from '@apollo/client';
-import client from '@root/utils/apollo';
-import Index from '@root/pages';
+import client from '@utils/apollo';
+import Index from '@src/pages';
 import Layout from '@components/Layout';
 import { createGlobalStyle } from 'styled-components';
 

@@ -1,11 +1,11 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import characterQuery from '@root/queries/characterQuery';
-import { AllCharacters, AllCharacters_characters_results } from '@root/queries/types/AllCharacters';
+import characterQuery from '@src/queries/characterQuery';
+import { AllCharacters, AllCharacters_characters_results } from '@src/queries/types/AllCharacters';
 import { useQuery } from '@apollo/client';
 import styled from 'styled-components';
 import CharacterCard from '@components/CharacterCard';
 import InfiniteScroll from '@components/InfiniteScroll';
-import { device } from '@root/styles/devicesWidth';
+import { device } from '@src/styles/devicesWidth';
 import Loading from '@components/Loading';
 
 const CharacterListComponent = styled.div`

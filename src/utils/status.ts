@@ -1,4 +1,4 @@
-import { colors } from '@root/styles/colors';
+import { colors } from '@src/styles/colors';
 
 /**
  * Returns the color corresponding to the state of a character

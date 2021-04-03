@@ -1,5 +1,5 @@
-import { colors } from '@root/styles/colors';
-import { getColorFromStatus } from '@root/utils/status';
+import { colors } from '@src/styles/colors';
+import { getColorFromStatus } from '@utils/status';
 import React from 'react';
 import styled from 'styled-components';
 

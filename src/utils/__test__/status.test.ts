@@ -1,5 +1,5 @@
-import { getColorFromStatus } from '@root/utils/status';
-import { colors } from '@root/styles/colors';
+import { getColorFromStatus } from '@utils/status';
+import { colors } from '@src/styles/colors';
 
 describe('status', () => {
   describe('getColorFromStatus', () => {

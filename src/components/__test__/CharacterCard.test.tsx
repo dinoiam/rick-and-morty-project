@@ -1,7 +1,7 @@
 import React from 'react';
 import CharacterCard from '@components/CharacterCard';
 import { render } from '@testing-library/react';
-import { AllCharacters_characters_results } from '@root/queries/types/AllCharacters';
+import { AllCharacters_characters_results } from '@src/queries/types/AllCharacters';
 
 const character: AllCharacters_characters_results = {
   __typename: 'Character',

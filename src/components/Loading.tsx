@@ -1,5 +1,5 @@
 import React from 'react';
-import Morty from '@root/images/morty.png';
+import Morty from '@src/images/morty.png';
 import styled, { keyframes } from 'styled-components';
 
 const dots = keyframes`

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { colors } from '@root/styles/colors';
-import HeroSvg from '@root/images/hero.svg';
+import { colors } from '@src/styles/colors';
+import HeroSvg from '@src/images/hero.svg';
 
 const HeaderComponent = styled.section`
   height: 200px;

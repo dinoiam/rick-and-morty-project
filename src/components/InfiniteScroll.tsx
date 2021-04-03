@@ -1,5 +1,5 @@
 import React, { useCallback, useRef } from 'react';
-import Loading from './Loading';
+import Loading from '@components/Loading';
 
 type InfiniteScrollProps = {
   children: React.ReactNode;

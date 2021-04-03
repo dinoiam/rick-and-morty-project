@@ -1,8 +1,8 @@
-import { AllCharacters_characters_results } from '@root/queries/types/AllCharacters';
+import { AllCharacters_characters_results } from '@src/queries/types/AllCharacters';
 import React, { useMemo } from 'react';
 import styled from 'styled-components';
-import { device } from '@root/styles/devicesWidth';
-import { colors } from '@root/styles/colors';
+import { device } from '@src/styles/devicesWidth';
+import { colors } from '@src/styles/colors';
 import CharacterCardDetails from '@components/CharacterCardDetails';
 import CharacterCardStatus from '@components/CharacterCardStatus';
 

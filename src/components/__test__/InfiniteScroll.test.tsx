@@ -1,7 +1,7 @@
 import React from 'react';
 import InfiniteScroll from '@components/InfiniteScroll';
 import { render } from '@testing-library/react';
-import '../../../__mocks__/intersectionObserverMock';
+import '@src/__mocks__/intersectionObserverMock';
 
 const props = {
   loadMore: false,

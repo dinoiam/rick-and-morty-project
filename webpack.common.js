@@ -3,21 +3,22 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const createStyledComponentsTransformer = require('typescript-plugin-styled-components').default;
 const styledComponentsTransformer = createStyledComponentsTransformer();
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const root = {
-  src: path.join(__dirname, 'src')
+  src: path.join(__dirname, 'src'),
+  utils: path.join(__dirname, 'src/utils')
 };
 
 module.exports = {
-  mode: 'development',
   entry: {
     app: path.join(__dirname, 'src', 'index.tsx')
   },
-  devtool: 'inline-source-map',
   target: 'web',
   resolve: {
     alias: {
-      '@root': path.join(root.src, ''),
+      '@src': path.join(root.src, ''),
+      '@utils': path.join(root.utils, ''),
       '@components': path.join(root.src, 'components')
     },
     extensions: ['.ts', '.tsx', '.js']
@@ -51,11 +52,12 @@ module.exports = {
   },
   output: {
     filename: '[name].js',
-    path: path.resolve(__dirname, 'dist')
+    path: path.resolve(__dirname, 'build')
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: path.join(__dirname, 'src', 'index.html')
-    })
+    }),
+    new BundleAnalyzerPlugin()
   ]
 };
