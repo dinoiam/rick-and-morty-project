@@ -1,5 +1,7 @@
 import React, { useCallback, useRef } from 'react';
 import Loading from '@components/Loading';
+import { colors } from '@src/styles/colors';
+import styled from 'styled-components';
 
 type InfiniteScrollProps = {
   children: React.ReactNode;
@@ -7,6 +9,10 @@ type InfiniteScrollProps = {
   loading: boolean;
   callback: () => void;
 };
+
+const InfiniteScrollEnd = styled.div`
+  color: ${colors.primary_variant};
+`;
 
 export default function InfiniteScroll({
   children,
@@ -33,7 +39,9 @@ export default function InfiniteScroll({
   return (
     <>
       {children}
-      {!loadMore && <div data-testid="no-more-results">NOTHING ELSE TO SHOW</div>}
+      {!loadMore && (
+        <InfiniteScrollEnd data-testid="no-more-results">NOTHING ELSE TO SHOW</InfiniteScrollEnd>
+      )}
       {loadMore && <div data-testid="bottom-div" ref={bottomRef}></div>}
       {loadMore && <Loading></Loading>}
     </>
