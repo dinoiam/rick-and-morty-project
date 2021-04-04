@@ -1,9 +1,7 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const createStyledComponentsTransformer = require('typescript-plugin-styled-components').default;
 const styledComponentsTransformer = createStyledComponentsTransformer();
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const root = {
   src: path.join(__dirname, 'src'),
@@ -53,11 +51,5 @@ module.exports = {
   output: {
     filename: '[name].js',
     path: path.resolve(__dirname, 'build')
-  },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: path.join(__dirname, 'src', 'index.html')
-    }),
-    new BundleAnalyzerPlugin()
-  ]
+  }
 };
